@@ -3,28 +3,32 @@ import VueRouter from 'vue-router'
 import GoodsList from '../views/GoodsList.vue'
 import CreateGoods from '../views/CreateGoods.vue'
 import Profile from '../views/Profile'
+import Login from '../views/Login'
+import Home from '../views/Home'
 Vue.use(VueRouter)
 
   const routes = [
   {
     path: '/',
-    name: 'home',
-    redirect : '/goods/index'
+    component: Login
   },
   {
-    path: '/goods/index',
-    name: 'list-goods',
-    component: GoodsList
-  },
-  {
-    path: '/goods/create',
-    name: 'create-goods',
-    component: CreateGoods
-  },
-  {
-    path: '/goods/profile',
-    name: 'profile',
-    component: Profile
+    path:'/home',
+    name:'',
+    component:Home,
+    children:[{
+      path:'/goods',
+      component:GoodsList,
+      meta:['商品列表']
+    },{
+      path:'/create',
+      component:CreateGoods,
+      meta:['添加商品']
+    },{
+      path:'/profile',
+      component:Profile,
+      meta:['个人信息']
+    }]
   }
 ]
 

@@ -26,7 +26,7 @@ export default {
       }
     },
   created(){
-    this.getGoods()
+    // this.getGoods()
   },
   methods:{
     getGoods(){
