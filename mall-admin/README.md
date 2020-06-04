@@ -1,4 +1,4 @@
-# kaba-mall-admin
+# mall-admin
 
 ## Project setup
 ```
