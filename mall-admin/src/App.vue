@@ -34,6 +34,9 @@
       return {
 
       }
+    },
+    components:{
+      
     }
   };
 </script>

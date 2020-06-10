@@ -7,9 +7,9 @@
             <template slot="title">
               <i class="el-icon-s-order"></i>内容管理
             </template>
-            <el-menu-item index="home/goods">商品列表</el-menu-item>
-            <el-menu-item index="home/create">添加商品</el-menu-item>
-            <el-menu-item index="home/profile">个人信息</el-menu-item>
+            <el-menu-item index="/goods">商品列表</el-menu-item>
+            <el-menu-item index="/create">添加商品</el-menu-item>
+            <el-menu-item index="/profile">个人信息</el-menu-item>
           </el-submenu>
         </el-menu>
       </el-aside>
@@ -24,7 +24,7 @@
               <el-dropdown-item>删除</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <span>王小虎</span>
+          <span>kaba</span>
         </el-header>
 
         <el-main>

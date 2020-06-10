@@ -3,20 +3,27 @@ import VueRouter from 'vue-router'
 import GoodsList from '../views/GoodsList.vue'
 import CreateGoods from '../views/CreateGoods.vue'
 import Profile from '../views/Profile'
-import Login from '../views/Login'
+// import Login from '../views/Login'
 import Home from '../views/Home'
 Vue.use(VueRouter)
 
   const routes = [
   {
     path: '/',
-    component: Login
+    redirect: '/login'
+  },
+  {
+    path:'/login',
+    component:()=>import ('views/Login.vue')
   },
   {
     path:'/home',
     name:'',
     component:Home,
     children:[{
+      path:'/',
+      redirect:'/goods'
+    },{
       path:'/goods',
       component:GoodsList,
       meta:['商品列表']
