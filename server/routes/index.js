@@ -26,6 +26,23 @@ router.get('/api/users',async (req,res)=>{
   res.send(users)
 })
 
+//登陆管理员login
+router.get('/adminlogin/:name',async (req,res)=>{
+  const admin = await Admin.findOne({
+    adminname : req.params.name
+  })
+  res.send(admin)
+})
+
+//注册管理员register
+router.post('/adminregister',async (req,res)=>{
+  const admin = await Admin.create({
+    adminname: req.body.adminname,
+    password: req.boduy.password
+  })
+  res.send(admin)
+})
+
 //查询用户收货地址
 router.get('/api/address',async (req,res)=>{
   const addresss = await Address.find()
@@ -153,7 +170,7 @@ router.post('/addcate', async(req,res)=>{
   
 })
 
-//查询管理员
+//查询所有管理员
 router.get('/api/admins',async (req,res)=>{
   const admins = await Admin.find()
   res.send(admins)
