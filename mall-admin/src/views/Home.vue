@@ -57,6 +57,18 @@ export default {
   name: "Home",
   data() {
     return {};
+  },
+  created(){
+    // this.getUser()
+  },
+  methods:{
+    // getUser(){
+    //   if(!this.$store.getters.isLogin){
+    //     this.$router.push('/login')
+    //   }else{
+
+    //   }
+    // }
   }
 };
 </script>

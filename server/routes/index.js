@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const multer = require('multer')
 const fs = require('fs')
 //导入模型
@@ -27,12 +28,42 @@ router.get('/api/users',async (req,res)=>{
 })
 
 //登陆管理员login
-router.get('/adminlogin/:name',async (req,res)=>{
+//1.查重 2.登陆
+router.post('/api/login', async (req,res)=>{
   const admin = await Admin.findOne({
-    adminname : req.params.name
+    adminname : req.body.adminname
   })
-  res.send(admin)
+  if(!admin){
+    return res.status(422).send({
+      message: req.body.adminname + ' is not found'
+    })
+  }
+  const isPwdValid = bcrypt.compareSync(
+    req.body.password,
+    admin.password
+  )
+  if(!isPwdValid){
+    return res.status(422).send({
+      message: ' password error '
+    })
+  }
+  //token
+  const token = jwt.sign({
+    id: String(admin._id)
+  },'secret')
+  res.send({
+    admin,
+    token
+  })
 })
+
+//登陆后的个人信息
+const auth = async (req,res,next)=>{
+  const raw = String(req.headers.authorization).split(' ').pop()
+  const { id } = jwt.verify(raw,SECRET)
+  req.admin = await Admin.findById(id)
+  next()
+}
 
 //注册管理员register
 router.post('/adminregister',async (req,res)=>{

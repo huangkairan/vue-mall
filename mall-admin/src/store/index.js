@@ -8,6 +8,9 @@ export default new Vuex.Store({
     user: ''
   },
   mutations: {
+    setUser(state,admin){
+      state.user = admin
+    }
   },
   actions: {
   },
