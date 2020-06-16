@@ -5,11 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: ''
+    admin: ''
   },
   mutations: {
-    setUser(state,admin){
-      state.user = admin
+    setAdmin(state,admin){
+      state.admin = admin
     }
   },
   actions: {
@@ -18,10 +18,10 @@ export default new Vuex.Store({
   },
   getters:{
     isLogin(state){
-      if(!state.user){
+      if(!state.admin){
         return false
       }else {
-        return state.user 
+        return state.admin 
       }
     }
   }

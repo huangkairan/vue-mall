@@ -24,7 +24,7 @@
               <el-dropdown-item>删除</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <span>kaba</span>
+          <span>{{admin}}</span>
         </el-header>
 
         <el-main>
@@ -35,6 +35,29 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: "Home",
+  data() {
+    return {
+      admin:''
+    };
+  },
+  created(){
+    this.getAdmin()
+  },
+  methods:{
+    getAdmin(){
+      console.log(this.$store.getters.isLogin)
+      if(!this.$store.getters.isLogin){
+        this.$router.push('/login')
+      }else{
+        this.admin = this.$store.state.admin
+      }
+    }
+  }
+};
+</script>
 
 <style>
 * {
@@ -51,24 +74,3 @@
   color: #333;
 }
 </style>
-
-<script>
-export default {
-  name: "Home",
-  data() {
-    return {};
-  },
-  created(){
-    // this.getUser()
-  },
-  methods:{
-    // getUser(){
-    //   if(!this.$store.getters.isLogin){
-    //     this.$router.push('/login')
-    //   }else{
-
-    //   }
-    // }
-  }
-};
-</script>

@@ -59,8 +59,16 @@ export default {
           //请求登陆
           pLogin(this.form.adminname,this.form.password).then(res=>{
             console.log(res)
+            if(res.token){
+              this.$store.commit('setAdmin',this.form.adminname)
+              console.log(this.$store.getters.isLogin)
+            }
           })
-          this.$router.push("/home");
+          
+          setTimeout(() => {
+            this.$router.push("/home");
+          }, 300);
+          
         } else {
           this.dialogVisible = true;
           return false;
