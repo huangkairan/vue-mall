@@ -24,11 +24,22 @@
               <el-dropdown-item>删除</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <span>{{admin}}</span>
+
+          <el-dropdown @command="handleCommand" > 
+            <span class="el-dropdown-link">
+              {{admin}}
+              <i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item command='change'>切换账号</el-dropdown-item>
+              <el-dropdown-item command='exit'>退出登陆</el-dropdown-item>
+
+            </el-dropdown-menu>
+          </el-dropdown>
         </el-header>
 
         <el-main>
-          <router-view/>
+          <router-view />
         </el-main>
       </el-container>
     </el-container>
@@ -40,19 +51,24 @@ export default {
   name: "Home",
   data() {
     return {
-      admin:''
+      admin: ""
     };
   },
-  created(){
-    this.getAdmin()
+  created() {
+    this.getAdmin();
   },
-  methods:{
-    getAdmin(){
-      console.log(this.$store.getters.isLogin)
-      if(!this.$store.getters.isLogin){
-        this.$router.push('/login')
-      }else{
-        this.admin = this.$store.state.admin
+  methods: {
+    handleCommand(command){
+      this.$store.commit('setAdmin',''),
+      this.$store.getters.isLogin
+      this.$router.push('/login')
+    },
+    getAdmin() {
+      console.log(this.$store.getters.isLogin);
+      if (!this.$store.getters.isLogin) {
+        this.$router.push("/login");
+      } else {
+        this.admin = this.$store.state.admin;
       }
     }
   }
@@ -73,4 +89,14 @@ export default {
 .el-aside {
   color: #333;
 }
+
+<style>
+  .el-dropdown-link {
+    cursor: pointer;
+    color: #409EFF;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
+  }
+</style>
 </style>
