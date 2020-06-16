@@ -58,13 +58,13 @@ router.post('/api/login', async (req,res)=>{
   })
 })
 
-//登陆后的个人信息
-const auth = async (req,res,next)=>{
-  const raw = String(req.headers.authorization).split(' ').pop()
-  const { id } = jwt.verify(raw,SECRET)
-  req.admin = await Admin.findById(id)
-  next()
-}
+//登陆后的个人信息 暂时用axios
+// const auth = async (req,res,next)=>{
+//   const raw = String(req.headers.authorization).split(' ').pop()
+//   const { id } = jwt.verify(raw,SECRET)
+//   req.admin = await Admin.findById(id)
+//   next()
+// }
 
 //注册管理员register
 router.post('/adminregister',async (req,res)=>{

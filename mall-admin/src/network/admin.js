@@ -9,3 +9,10 @@ export function pLogin(adminname,password){
     }
   })
 } 
+
+export function gData(){
+  return request({
+    url: '/api/good',
+    method: 'get'
+  })
+}
