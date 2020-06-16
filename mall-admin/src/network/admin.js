@@ -1,7 +1,11 @@
 import { request } from './network'
-export function pLogin(name,pwd){
+export function pLogin(adminname,password){
   return request({
-    url:`/adminlogin/${name}`,
-    method: 'get'
+    url:'/api/login',
+    method: 'post',
+    data:{
+      adminname,
+      password
+    }
   })
-}
+} 

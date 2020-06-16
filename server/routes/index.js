@@ -44,7 +44,8 @@ router.post('/api/login', async (req,res)=>{
   )
   if(!isPwdValid){
     return res.status(422).send({
-      message: ' password error '
+      message: ' password error ',
+      status: 'false'
     })
   }
   //token

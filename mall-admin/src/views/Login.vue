@@ -2,8 +2,8 @@
   <div>
     <el-form ref="loginForm" :model="form" :rules="rules" label-width="80px" class="login-box">
       <h3 class="login-title">登录</h3>
-      <el-form-item label="账号" prop="username">
-        <el-input type="text" placeholder="请输入账号" v-model="form.username" />
+      <el-form-item label="账号" prop="adminname">
+        <el-input type="text" placeholder="请输入账号" v-model="form.adminname" />
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input type="password" placeholder="请输入密码" v-model="form.password" />
@@ -23,19 +23,19 @@
 </template>
 
 <script>
-import pLogin from 'network/admin.js'
+import { pLogin } from 'network/admin.js'
 export default {
   name: "Login",
   data() {
     return {
       form: {
-        username: "",
+        adminname: "",
         password: ""
       },
 
       // 表单验证，需要在 el-form-item 元素中增加 prop 属性
       rules: {
-        username: [
+        adminname: [
           { required: true, message: "账号不可为空", trigger: "blur" }
         ],
         password: [{ required: true, message: "密码不可为空", trigger: "blur" }]
@@ -53,10 +53,13 @@ export default {
     //submit
     onSubmit(formName) {
       // 为表单绑定验证功能
+      console.log(this.form)
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.pLogin(this.form.username,this.form.password)
-          // router
+          //请求登陆
+          pLogin(this.form.adminname,this.form.password).then(res=>{
+            console.log(res)
+          })
           this.$router.push("/home");
         } else {
           this.dialogVisible = true;
