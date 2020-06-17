@@ -139,7 +139,7 @@ router.post('/uploadgood',multer({dest:'upload'}).single('file'),(req,res)=>{
     itemid : itemid,
     itemname : req.body.itemname,
     img : `upload/${tmpname}.${ext}`,
-    created : tmpname.toString().slice(0,9),
+    created : tmpname.toString().slice(0,10),
     brand : req.body.brand,
     cateid : req.body.cateid,
     owner : req.body.owner,

@@ -59,7 +59,8 @@ export default {
   },
     filters: {
       showDate(value) {
-      let date = new Date(value*1000);
+      console.log(value*1000)
+      let date = new Date(value*1);
       return formatDate(date, 'yyyy-MM-dd')
     }
   }
