@@ -5,3 +5,11 @@ export function getGoodsList(){
     url:'/api/good'
   })
 }
+
+
+export function gCate(){
+  return request({
+    url: '/api/cate',
+    method: 'get'
+  })
+}

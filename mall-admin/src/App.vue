@@ -6,7 +6,8 @@
 
 
 <style>
-*{
+@import "assets/normalize.css";
+*,html,body{
   padding: 0;
   margin: 0;
 }
