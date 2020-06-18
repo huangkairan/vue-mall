@@ -53,7 +53,7 @@ export default {
     //submit
     onSubmit(formName) {
       // 为表单绑定验证功能
-      console.log(this.form)
+      // console.log(this.form)
       this.$refs[formName].validate(valid => {
         if (valid) {
           //请求登陆
@@ -61,7 +61,7 @@ export default {
             console.log(res)
             if(res.token){
               this.$store.commit('setAdmin',this.form.adminname)
-              console.log(this.$store.getters.isLogin)
+              // console.log(this.$store.getters.isLogin)
             }
           })
           
