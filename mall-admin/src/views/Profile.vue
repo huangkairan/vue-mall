@@ -44,6 +44,7 @@ export default {
   methods: {
     onSubmit(formName) {
       this.$refs[formName].validate(valid => {
+        console.log(this.form)
         if (valid) {
           this.$message({
             message: "修改成功",

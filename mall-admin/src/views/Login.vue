@@ -1,19 +1,33 @@
 <template>
   <div>
-    <el-form ref="loginForm" :model="form" :rules="rules" label-width="80px" class="login-box">
+    <el-form
+      ref="loginForm"
+      :model="form"
+      :rules="rules"
+      label-width="80px"
+      class="login-box"
+    >
       <h3 class="login-title">登录</h3>
       <el-form-item label="账号" prop="adminname">
-        <el-input type="text" placeholder="请输入账号" v-model="form.adminname" />
+        <el-input
+          type="text"
+          placeholder="请输入账号"
+          v-model="form.adminname"
+        />
       </el-form-item>
       <el-form-item label="密码" prop="password">
-        <el-input type="password" placeholder="请输入密码" v-model="form.password" />
+        <el-input
+          type="password"
+          placeholder="请输入密码"
+          v-model="form.password"
+        />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" v-on:click="onSubmit('loginForm')">登录</el-button>
       </el-form-item>
     </el-form>
 
-    <el-dialog title="温馨提示" :visible.sync="dialogVisible" width="30%" >
+    <el-dialog title="温馨提示" :visible.sync="dialogVisible" width="30%">
       <span>请输入账号和密码</span>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
@@ -23,59 +37,57 @@
 </template>
 
 <script>
-import { pLogin } from 'network/admin.js'
+import { pLogin } from "network/admin.js";
 export default {
   name: "Login",
   data() {
     return {
       form: {
         adminname: "",
-        password: ""
+        password: "",
       },
 
       // 表单验证，需要在 el-form-item 元素中增加 prop 属性
       rules: {
         adminname: [
-          { required: true, message: "账号不可为空", trigger: "blur" }
+          { required: true, message: "账号不可为空", trigger: "blur" },
         ],
-        password: [{ required: true, message: "密码不可为空", trigger: "blur" }]
+        password: [
+          { required: true, message: "密码不可为空", trigger: "blur" },
+        ],
       },
-
       // 对话框显示和隐藏
-      dialogVisible: false
+      dialogVisible: false,
     };
   },
-  created(){
-    
-  },
+  created() {},
   methods: {
     //请求登陆
     //submit
     onSubmit(formName) {
       // 为表单绑定验证功能
       // console.log(this.form)
-      this.$refs[formName].validate(valid => {
+      this.$refs[formName].validate((valid) => {
         if (valid) {
           //请求登陆
-          pLogin(this.form.adminname,this.form.password).then(res=>{
-            console.log(res)
-            if(res.token){
-              this.$store.commit('setAdmin',this.form.adminname)
+          pLogin(this.form.adminname, this.form.password).then((res) => {
+            // console.log(res);
+            if (res.token) {
+              this.$store.commit("setAdmin", this.form.adminname);
               // console.log(this.$store.getters.isLogin)
             }
-          })
-          
+          });
+
           setTimeout(() => {
             this.$router.push("/home");
           }, 300);
-          
         } else {
           this.dialogVisible = true;
           return false;
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

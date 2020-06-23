@@ -46,10 +46,10 @@ export default {
         // console.log(res)
         res.forEach(element => {
           this.tableData.push(element)
-          console.log(element)
+          // console.log(element)
         });
       })
-      console.log(this.tableData)
+      // console.log(this.tableData)
     },
     getCate(){
       gCate().then(res=>{

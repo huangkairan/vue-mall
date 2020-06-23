@@ -177,7 +177,7 @@ router.post('/addorder',(req,res)=>{
 })
 
 //查询所有商品类别信息
-router.get('/api/cate',async (req,res)=>{
+router.get('/api/cate',async (req,res)=>{ 
   const cates = await Cate.find()
   res.send(cates)
 })

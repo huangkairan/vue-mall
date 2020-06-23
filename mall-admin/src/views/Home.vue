@@ -57,7 +57,7 @@ export default {
       this.$router.push('/login')
     },
     getAdmin() {
-      console.log(this.$store.getters.isLogin);
+      // console.log(this.$store.getters.isLogin);
       if (!this.$store.getters.isLogin) {
         this.$router.push("/login");
       } else {
